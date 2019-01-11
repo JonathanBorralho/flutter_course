@@ -3,10 +3,9 @@ import 'package:flutter/material.dart';
 import './pages/product.dart';
 
 class Produtos extends StatelessWidget {
-  final List<Map<String,String>> produtos;
-  final Function deleteProductFn;
+  final List<Map<String,dynamic>> produtos;
 
-  Produtos(this.produtos, {this.deleteProductFn});
+  Produtos(this.produtos);
 
   Widget _buildProductItem(BuildContext context, int index) {
     return Card(
@@ -23,11 +22,7 @@ class Produtos extends StatelessWidget {
                   Navigator.push<bool>(
                     context,
                     MaterialPageRoute(builder: (context) => ProductPage(produtos[index])),
-                  ).then((value) {
-                    if (value) {
-                      deleteProductFn(index);
-                    }
-                  });
+                  );
                 },
               )
             ],

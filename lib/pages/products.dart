@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import '../produtos_manager.dart';
 
 class ProductsPage extends StatelessWidget {
+  final List<Map<String, dynamic>> _produtos;
+  
+  ProductsPage(this._produtos);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +30,7 @@ class ProductsPage extends StatelessWidget {
         title: Text('Flutter Course'),
         centerTitle: true,
       ),
-      body: ProdutosManager(),
+      body: ProdutosManager(_produtos),
     );
   }
 }

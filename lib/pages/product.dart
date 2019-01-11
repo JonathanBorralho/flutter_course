@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 class ProductPage extends StatelessWidget {
-  final Map<String, String> product;
+  final Map<String, dynamic> product;
 
   ProductPage(this.product);
 
@@ -43,7 +43,8 @@ class ProductPage extends StatelessWidget {
       label: Text('Delete'),
       icon: Icon(Icons.delete),
       onPressed: () {
-        Navigator.pop(context, true);
+        //Navigator.pop(context, true);
+        print('TODO'); 
       },
     );
   }
