@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import './pages/product.dart';
 
 class Produtos extends StatelessWidget {
-  final List<Map<String,dynamic>> produtos;
+  final List<Map<String, dynamic>> produtos;
 
   Produtos(this.produtos);
 
@@ -12,7 +12,40 @@ class Produtos extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Image.asset(produtos[index]['image']),
-          Text(produtos[index]['title']),
+          Container(
+            padding: EdgeInsets.only(top: 10.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  produtos[index]['title'],
+                  style: TextStyle(
+                      fontSize: 26.0,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Oswald'),
+                ),
+                SizedBox(width: 8.0),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 6.0, vertical: 2.0),
+                  decoration: BoxDecoration(
+                      color: Theme.of(context).accentColor,
+                      borderRadius: BorderRadius.circular(5.0)),
+                  child: Text(
+                    '\$${produtos[index]['price'].toString()}',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 6.0, vertical: 2.5),
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.grey, width: 1.0),
+              borderRadius: BorderRadius.circular(4.0)
+            ),
+            child: Text('Union Square, San Francisco'),
+          ),
           ButtonBar(
             alignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -21,7 +54,8 @@ class Produtos extends StatelessWidget {
                 onPressed: () {
                   Navigator.push<bool>(
                     context,
-                    MaterialPageRoute(builder: (context) => ProductPage(produtos[index])),
+                    MaterialPageRoute(
+                        builder: (context) => ProductPage(produtos[index])),
                   );
                 },
               )
