@@ -52,14 +52,18 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
             },
             keyboardType: TextInputType.number,
           ),
+          SizedBox(height: 10.0,),
           RaisedButton(
-            child: Text('Save'),
+            color: Theme.of(context).accentColor,
+            textColor: Colors.white,
+            child: Text('SAVE'),
             onPressed: () {
               // criar produto e chamar adicionarProduto()
               final Map<String, dynamic> produto = {
                 'title': _title, 'description': _description, 'price': _price, 'image': 'assets/food.jpg'
               };
               widget._addProduct(produto);
+              Navigator.pushReplacementNamed(context, '/products');
             },
           )
         ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_course/pages/auth.dart';
 // import 'package:flutter/rendering.dart';
 
 import './pages/products.dart';
@@ -32,7 +33,8 @@ class MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       // home: HomePage(),
       routes: {
-        '/': (context) => ProductsPage(_produtos),
+        '/': (context) => AuthPage(),
+        '/products': (context) => ProductsPage(_produtos),
         '/admin': (context) => ProductsAdminPage(_addProduct, _deleteProduct),
       },
     );

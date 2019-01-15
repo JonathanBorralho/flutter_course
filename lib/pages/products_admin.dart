@@ -20,7 +20,7 @@ class ProductsAdminPage extends StatelessWidget {
           ListTile(
             title: Text('Home Page'),
             onTap: () {
-              Navigator.pushReplacementNamed(context, '/');
+              Navigator.pushReplacementNamed(context, '/products');
             },
           )
         ],
