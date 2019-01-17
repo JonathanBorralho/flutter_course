@@ -1,40 +1,32 @@
 import 'package:flutter/material.dart';
 
-import './pages/product.dart';
+import 'package:flutter_course/pages/product.dart';
+import 'package:flutter_course/widgets/price_tag.dart';
 
-class Produtos extends StatelessWidget {
-  final List<Map<String, dynamic>> produtos;
+class ProductCard extends StatelessWidget {
+  final Map<String, dynamic> _product;
 
-  Produtos(this.produtos);
-
-  Widget _buildProductItem(BuildContext context, int index) {
+  ProductCard(this._product);
+  @override
+  Widget build(BuildContext context) {
     return Card(
       child: Column(
         children: <Widget>[
-          Image.asset(produtos[index]['image']),
+          Image.asset(_product['image']),
           Container(
             padding: EdgeInsets.only(top: 10.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text(
-                  produtos[index]['title'],
+                  _product['title'],
                   style: TextStyle(
                       fontSize: 26.0,
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Oswald'),
                 ),
                 SizedBox(width: 8.0),
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 6.0, vertical: 2.0),
-                  decoration: BoxDecoration(
-                      color: Theme.of(context).accentColor,
-                      borderRadius: BorderRadius.circular(5.0)),
-                  child: Text(
-                    '\$${produtos[index]['price'].toString()}',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
+                PriceTag(_product['price'].toString()),
               ],
             ),
           ),
@@ -56,7 +48,7 @@ class Produtos extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => ProductPage(produtos[index])),
+                        builder: (context) => ProductPage(_product)),
                   );
                 },
               ),
@@ -72,24 +64,4 @@ class Produtos extends StatelessWidget {
     );
   }
 
-  Widget _buildProductsList() {
-    Widget list;
-    if (produtos.length > 0) {
-      list = ListView.builder(
-        itemBuilder: _buildProductItem,
-        itemCount: produtos?.length ?? 0,
-      );
-    } else {
-      list = Center(
-        child: Text('Não há produtos cadastrados.'),
-      );
-    }
-
-    return list;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return _buildProductsList();
-  }
 }
