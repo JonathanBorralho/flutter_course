@@ -19,48 +19,70 @@ class _AuthPageState extends State<AuthPage> {
         title: Text('Login'),
       ),
       body: Container(
-          margin: EdgeInsets.all(12.0),
-          child: ListView(
-            children: [
-              TextField(
-                decoration: InputDecoration(labelText: 'E-mail'),
-                keyboardType: TextInputType.emailAddress,
-                onChanged: (String value) {
-                  setState(() {
-                    this._emailAddress = value;
-                  });
-                },
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/background.jpg'),
+              fit: BoxFit.cover,
+              colorFilter: ColorFilter.mode(
+                Colors.black.withOpacity(0.3),
+                BlendMode.dstATop,
               ),
-              TextField(
-                obscureText: true,
-                decoration: InputDecoration(labelText: 'Senha'),
-                onChanged: (String value) {
-                  setState(() {
-                    this._password = value;
-                  });
-                },
+            ),
+          ),
+          padding: EdgeInsets.all(12.0),
+          child: Center(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  TextField(
+                    decoration: InputDecoration(
+                        labelText: 'E-Mail',
+                        filled: true,
+                        fillColor: Colors.white),
+                    keyboardType: TextInputType.emailAddress,
+                    onChanged: (String value) {
+                      setState(() {
+                        this._emailAddress = value;
+                      });
+                    },
+                  ),
+                  SizedBox(height: 12.0,),
+                  TextField(
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      labelText: 'Password',
+                      filled: true,
+                      fillColor: Colors.white
+                    ),
+                    onChanged: (String value) {
+                      setState(() {
+                        this._password = value;
+                      });
+                    },
+                  ),
+                  SwitchListTile(
+                    title: Text('Accept Terms'),
+                    value: _acceptTerms,
+                    onChanged: (bool value) {
+                      setState(() {
+                        this._acceptTerms = value;
+                      });
+                    },
+                  ),
+                  SizedBox(height: 5.0),
+                  RaisedButton(
+                    color: Theme.of(context).accentColor,
+                    textColor: Colors.white,
+                    child: Text('LOGIN'),
+                    onPressed: () {
+                      print("E-mail: $_emailAddress.");
+                      print("Password: $_password.");
+                      Navigator.pushReplacementNamed(context, '/products');
+                    },
+                  ),
+                ],
               ),
-              SwitchListTile(
-                title: Text('Accept Terms'),
-                value: _acceptTerms,
-                onChanged: (bool value) {
-                  setState(() {
-                    this._acceptTerms = value;
-                  });
-                },
-              ),
-              SizedBox(height: 5.0),
-              RaisedButton(
-                color: Theme.of(context).accentColor,
-                textColor: Colors.white,
-                child: Text('LOGIN'),
-                onPressed: () {
-                  print("E-mail: $_emailAddress.");
-                  print("Password: $_password.");
-                  Navigator.pushReplacementNamed(context, '/products');
-                },
-              ),
-            ],
+            ),
           )),
     );
   }
