@@ -18,7 +18,8 @@ class ProductsAdminPage extends StatelessWidget {
             automaticallyImplyLeading: false,
           ),
           ListTile(
-            title: Text('Home Page'),
+            title: Text('All Products'),
+            leading: Icon(Icons.shop),
             onTap: () {
               Navigator.pushReplacementNamed(context, '/products');
             },
