@@ -9,6 +9,10 @@ class ProductPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final String title = product['title'];
+    final String imageUrl = product['image'];
+    final String description = product['description'];
+    final String price = product['price'].toString();
     return WillPopScope(
       onWillPop: () {
         Navigator.pop(context, false);
@@ -16,36 +20,52 @@ class ProductPage extends StatelessWidget {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: Text(product['title']),
+          title: Text(title),
         ),
         body: Center(
             child: Column(
           children: <Widget>[
-            Image.asset(product['image']),
+            Image.asset(imageUrl),
             Container(
               padding: EdgeInsets.all(10.0),
-              child: Text(product['title']),
+              child: Text(
+                title,
+                style: TextStyle(
+                    fontSize: 26.0,
+                    fontFamily: 'Oswald',
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  'Union Square, San Francisco',
+                  style: TextStyle(fontFamily: 'Oswald', color: Colors.grey),
+                ),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 5.0),
+                  child: Text(
+                    '|',
+                    style: TextStyle(fontFamily: 'Oswald', color: Colors.grey),
+                  ),
+                ),
+                Text(
+                  '\$$price',
+                  style: TextStyle(fontFamily: 'Oswald', color: Colors.grey),
+                )
+              ],
             ),
             Container(
-              padding: EdgeInsets.all(10.0),
-              child: _buildDeleteButton(context),
+              padding: EdgeInsets.all(5.0),
+              child: Text(
+                description,
+                textAlign: TextAlign.center,
+              ),
             )
           ],
         )),
       ),
-    );
-  }
-
-  Widget _buildDeleteButton(BuildContext context) {
-    return RaisedButton.icon(
-      textTheme: ButtonTextTheme.primary,
-      color: Theme.of(context).accentColor,
-      label: Text('Delete'),
-      icon: Icon(Icons.delete),
-      onPressed: () {
-        //Navigator.pop(context, true);
-        print('TODO'); 
-      },
     );
   }
 }
