@@ -7,6 +7,30 @@ class ProductCard extends StatelessWidget {
   final Map<String, dynamic> _product;
 
   ProductCard(this._product);
+
+  Widget _buildActionButtons(BuildContext context) {
+    return ButtonBar(
+      alignment: MainAxisAlignment.center,
+      children: <Widget>[
+        IconButton(
+          icon: Icon(Icons.info),
+          color: Theme.of(context).accentColor,
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ProductPage(_product)),
+            );
+          },
+        ),
+        IconButton(
+          icon: Icon(Icons.favorite_border),
+          color: Colors.red,
+          onPressed: () {},
+        )
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -33,35 +57,13 @@ class ProductCard extends StatelessWidget {
           Container(
             padding: EdgeInsets.symmetric(horizontal: 6.0, vertical: 2.5),
             decoration: BoxDecoration(
-              border: Border.all(color: Colors.grey, width: 1.0),
-              borderRadius: BorderRadius.circular(4.0)
-            ),
+                border: Border.all(color: Colors.grey, width: 1.0),
+                borderRadius: BorderRadius.circular(4.0)),
             child: Text('Union Square, San Francisco'),
           ),
-          ButtonBar(
-            alignment: MainAxisAlignment.center,
-            children: <Widget>[
-              IconButton(
-                icon: Icon(Icons.info),
-                color: Theme.of(context).accentColor,
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ProductPage(_product)),
-                  );
-                },
-              ),
-              IconButton(
-                icon: Icon(Icons.favorite_border),
-                color: Colors.red,
-                onPressed: () {},
-              )
-            ],
-          )
+          _buildActionButtons(context),
         ],
       ),
     );
   }
-
 }

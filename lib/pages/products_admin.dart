@@ -29,6 +29,19 @@ class ProductsAdminPage extends StatelessWidget {
     );
   }
 
+  List<Widget> _buildTabs() {
+    return [
+      Tab(
+        icon: Icon(Icons.create),
+        child: Text('Create Product'),
+      ),
+      Tab(
+        icon: Icon(Icons.list),
+        child: Text('My Products'),
+      )
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -37,16 +50,7 @@ class ProductsAdminPage extends StatelessWidget {
         drawer: _buildDrawer(context),
         appBar: AppBar(
           bottom: TabBar(
-            tabs: <Widget>[
-              Tab(
-                icon: Icon(Icons.create),
-                child: Text('Create Product'),
-              ),
-              Tab(
-                icon: Icon(Icons.list),
-                child: Text('My Products'),
-              )
-            ],
+            tabs: _buildTabs(),
           ),
           title: Text('Product Admin Page'),
         ),
